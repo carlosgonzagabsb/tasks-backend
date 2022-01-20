@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage ('Teste Junit'){
+        stage ('Construção do Backend'){
             steps{
-                bat 'echo executou com sucesso!'
+                bat 'mvn clean install -U -DskipTests=true'
             }
         }
     }
