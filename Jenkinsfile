@@ -52,5 +52,14 @@ pipeline {
               
             }
         }
+         stage ('Teste Funcional'){
+            steps{
+                dir('teste-funcional'){
+                     git credentialsId: 'github_login', url: 'https://github.com/carlosgonzagabsb/teste-funcional.git'
+                     bat 'mvn test'    
+                }
+              
+            }
+        }
     }
 }
