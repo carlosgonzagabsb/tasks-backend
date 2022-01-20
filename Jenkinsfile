@@ -42,5 +42,15 @@ pipeline {
                 }
             }
         }
+         stage ('Deploy Fontend'){
+            steps{
+                dir('frontend'){
+                     git credentialsId: 'github_login', url: 'https://github.com/carlosgonzagabsb/tasks-frontend.git'
+                     bat 'mvn clean install -U -DskipTests=true'
+                     deploy adapters: [tomcat8(credentialsId: 'login_tomcat', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-frontend', war: 'target/tasks.war'    
+                }
+              
+            }
+        }
     }
 }
