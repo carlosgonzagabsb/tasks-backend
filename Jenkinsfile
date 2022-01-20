@@ -52,11 +52,22 @@ pipeline {
               
             }
         }
+        stage ('Deploy Teste Funcional'){
+            steps{
+                dir('frontend'){
+                     git credentialsId: 'github_login', url: 'https://github.com/carlosgonzagabsb/teste-funcional.git'
+                     bat 'mvn clean install -U -DskipTests=true'
+                     
+                }
+              
+            }
+        }
+
+
          stage ('Teste Funcional'){
             steps{
-                dir('teste-funcional'){
-                     git credentialsId: 'github_login', url: 'https://github.com/carlosgonzagabsb/teste-funcional.git'
-                     bat 'mvn test'    
+                dir('teste-funcional/target'){
+                   bat 'java -cp teste-funcional-0.0.1-SNAPSHOT.jar br.com.selenium.RunTeste'
                 }
               
             }
