@@ -22,11 +22,17 @@ pipeline {
             }
         }
         stage ('Quality Gate'){
-            steps{
-               timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
+            timeout(time: 1, unit: 'MINUTES') {
+                def qg = waitForQualityGate()
+                if (qg.status != 'OK') {
+                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
-             }
+            }
+        }
+        stage ('Deploy Backend'){
+            steps{
+               deploy adapters: [tomcat8(credentialsId: 'login_tomcat', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+            }
         }
     }
 }
