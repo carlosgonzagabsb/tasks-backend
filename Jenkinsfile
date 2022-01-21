@@ -65,7 +65,7 @@ pipeline {
         stage ('Teste Funcional'){
             steps{
                 dir('teste-funcional/target'){
-                   bat "java -cp teste-funcional-0.0.1-SNAPSHOT.jar br.com.selenium.RunTeste"
+                   bat 'java -cp teste-funcional-0.0.1-SNAPSHOT.jar br.com.selenium.RunTeste'
                 }
               
             }
