@@ -52,9 +52,9 @@ pipeline {
               
             }
         }
-        stage ('Deploy Teste Funcional'){
+        stage ('Construcao Teste Funcional'){
             steps{
-                dir('frontend'){
+                dir('teste-funcional'){
                      git credentialsId: 'github_login', url: 'https://github.com/carlosgonzagabsb/teste-funcional.git'
                      bat 'mvn clean install -U -DskipTests=true'
                      
