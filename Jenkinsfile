@@ -62,7 +62,7 @@ pipeline {
               
             }
         }
-        stage ('teste-funcional'){
+        stage ('Teste-funcional'){
             steps{
                 dir('C:/Users/c1202836/.jenkins/workspace/Pipeline/teste-funcional/target'){
                      bat 'java -cp teste-funcional-0.0.1-SNAPSHOT.jar br.com.selenium.RunTeste'    
