@@ -60,5 +60,3 @@ networks:
 volumes:
   prod_postgresql:
   prod_postgresql_data:
-
-# cocumentado
