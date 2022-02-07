@@ -11,6 +11,7 @@ services:
     volumes:
       - prod_postgresql:/var/lib/postgresql
       - prod_postgresql_data:/var/lib/postgresql/data
+    restart: always
 
   backend:
     container_name: backend-prod
